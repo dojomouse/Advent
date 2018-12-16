@@ -20,7 +20,17 @@ for idx, line in enumerate(file):
     if idx > 1 and line[2] == "#":
         predictors.add(line[0])
 
+#part1
 for gen in range(20):
     state_c = update(state_c, predictors)
 
 print(sum(state_c))
+
+#part2
+for gen in range(2000):
+    prev_sum = sum(state_c)
+    state_c = update(state_c, predictors)
+    print(f'Gen: {20 + gen}')
+    print(f'Sum: {sum(state_c)}')
+    print(f'Delta: {sum(state_c)-prev_sum}')
+

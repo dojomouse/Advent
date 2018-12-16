@@ -10,27 +10,21 @@
 # 300 x 300 grid
 
 import numpy as np
+import time
+start_time = time.time()
 
 x_range = 300
 y_range = 300
 grid_serial = 9798
 
-cells = np.zeros([x_range, y_range])
-
-def calc_power(x,y):
+def power(x,y):
     rack_id = x + 10
     power = rack_id * y
     power += grid_serial
     power *= rack_id
-    if len(str(power)) < 3:
-        return 0
-    power = str(power)[-3]
-    power = int(power) - 5
-    return power
+    return (power // 100 % 10) - 5
 
-for x in range(x_range):
-    for y in range(y_range):
-        cells[x][y] = calc_power(x,y)
+cells = np.fromfunction(power,[x_range, y_range])
 
 best_power = -100000000
 best_params = None
@@ -43,4 +37,5 @@ for size in range(300):
                 best_power = this_power
     print("size: {}".format(size))
     print(best_params)
+print("--- {} seconds ---".format(time.time() - start_time))
 
