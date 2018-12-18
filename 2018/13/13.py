@@ -79,6 +79,7 @@ while not last_cart:
             if np.array_equal(cart.position, other_cart.position):
                 cart.alive = False
                 other_cart.alive = False
+                print("Crash at: {}".format(cart.position))
 
 
         # update orienation based on track
@@ -86,5 +87,5 @@ while not last_cart:
     
     active_carts = [cart for cart in carts if cart.alive]
     if len(active_carts) < 2:
-        print([cart.position for cart in active_carts])
+        print("Final cart at: {}".format([cart.position for cart in active_carts]))
         last_cart = True
