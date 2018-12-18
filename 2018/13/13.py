@@ -83,7 +83,7 @@ while not last_cart:
 
 
         # update orienation based on track
-        cart.turn(track.get((cart.position[0],cart.position[1])))
+        cart.turn(track.get(tuple(cart.position)))
     
     active_carts = [cart for cart in carts if cart.alive]
     if len(active_carts) < 2:
